@@ -33,6 +33,10 @@ const err = (message: string, status = 400) =>
 
 async function verifyTurnstile(secret: string, token: string, ip: string | null): Promise<boolean> {
   if (!token) return false;
+  if (!secret) {
+    console.warn("verifyTurnstile: TURNSTILE_SECRET environment variable is missing or empty.");
+    return false;
+  }
   const form = new FormData();
   form.append("secret", secret);
   form.append("response", token);

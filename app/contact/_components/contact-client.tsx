@@ -66,7 +66,14 @@ export function ContactClient() {
           action: 'contact-submit',
           callback: (t: string) => setToken(t),
           'expired-callback': () => setToken(''),
-          'error-callback': () => setToken(''),
+          'error-callback': (code?: string) => {
+            console.error(
+              '[Turnstile] Verification failed with code:',
+              code,
+              'Ensure current domain is added to Allowed Domains in Cloudflare Turnstile dashboard.'
+            )
+            setToken('')
+          },
           theme: 'light',
         })
       } else if (widgetId.current === null) {
