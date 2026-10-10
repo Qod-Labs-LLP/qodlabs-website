@@ -1,0 +1,57 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "qodlabs-website",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-07-25",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  // Public workers.dev URL + per-version preview URLs off: qodlabs.in is the
+  // only public route (custom domain). Version-controlled so redeploys keep them off.
+  "workers_dev": false,
+  "preview_urls": false,
+  // Static export (Next `output:'export'`) served by the ASSETS binding.
+  // Existing files are served directly; the Worker runs for /api/* and misses.
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+
+  // The /api/contact handler uses:
+  //  - DB     : the shared email-app D1 (writes contact_submissions)
+  //  - R2     : shared bucket, available if the form ever needs uploads
+  //  - MAILER : service binding to the incorpify-email Worker; calls its
+  //             POST /send to deliver the notification email.
+  // Secrets (set via `wrangler secret put` / dashboard, NOT here):
+  //  - TURNSTILE_SECRET : Turnstile secret key (server-side siteverify)
+  //  - INBOX_API_KEY    : admin bearer for the mail Worker's /send
+  //  - FRONTDESK_PROXY_SECRET: authenticates this Worker to the shared Front Desk
+  "vars": {
+    "NOTIFY_TO": "support@qodlabs.in",
+    "NOTIFY_FROM": "postmaster@qodlabs.in",
+    "SITE_SOURCE": "qodlabs.in"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "incorpify-email",
+      "database_id": "aa1a28a7-b1c2-4990-8407-c53f826bf657"
+    }
+  ],
+  "r2_buckets": [
+    { "binding": "R2", "bucket_name": "incorpify-mail-r2" }
+  ],
+  "services": [
+    { "binding": "MAILER", "service": "incorpify-email" },
+    { "binding": "FRONTDESK", "service": "incorpify-ai-frontdesk" }
+  ],
+  "ratelimits": [
+    {
+      "name": "CHAT_LIMITER",
+      "namespace_id": "3002",
+      "simple": { "limit": 30, "period": 60 }
+    }
+  ]
+}
