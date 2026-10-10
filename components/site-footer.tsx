@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Container } from '@/components/layouts/container'
-import { Code2, Mail, Phone } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
+import { BrandIcon } from '@/components/brand-icon'
 
 export function SiteFooter() {
   return (
@@ -8,9 +9,9 @@ export function SiteFooter() {
       <Container size="xl">
         <div className="py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-teal-500">
-                <Code2 className="h-4 w-4 text-white" />
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-teal-500 shadow-sm shadow-blue-500/20 group-hover:scale-105 transition-transform duration-fast">
+                <BrandIcon className="h-4.5 w-4.5 text-white" />
               </div>
               <span className="font-display text-lg font-bold tracking-tight">
                 Qod Labs LLP

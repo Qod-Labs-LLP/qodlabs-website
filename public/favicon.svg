@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <defs>
-    <linearGradient id="qod-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2563EB" />
-      <stop offset="100%" stop-color="#0D9488" />
-    </linearGradient>
-    <linearGradient id="qod-accent" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#06B6D4" />
-      <stop offset="100%" stop-color="#3B82F6" />
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#0d9488" />
     </linearGradient>
   </defs>
-  <rect width="256" height="256" rx="56" fill="url(#qod-grad)" opacity="0.12"/>
-  <!-- Q outer circle -->
-  <circle cx="124" cy="120" r="68" fill="none" stroke="url(#qod-grad)" stroke-width="26" stroke-linecap="round"/>
-  <!-- Q internal code core -->
-  <circle cx="124" cy="120" r="28" fill="url(#qod-accent)" opacity="0.85"/>
-  <!-- Q tail / laser slash -->
-  <path d="M 152 148 L 196 196" stroke="url(#qod-grad)" stroke-width="26" stroke-linecap="round"/>
+  <rect width="256" height="256" rx="56" fill="url(#brandGrad)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left circle of Q -->
+    <circle cx="100" cy="129" r="63.5" />
+    <!-- Diagonal cross slash of Q -->
+    <line x1="116" y1="158" x2="149" y2="191" stroke-width="7" />
+    <!-- Right orbital arc from dot to bottom right -->
+    <path d="M 151 65.5 A 63.5 63.5 0 1 1 166 192.5" />
+  </g>
+  <!-- Orbital terminal dot -->
+  <circle cx="146.5" cy="64.5" r="6.5" fill="#ffffff" />
 </svg>

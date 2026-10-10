@@ -13,8 +13,12 @@ export const metadata: Metadata = {
   title: 'Qod Labs LLP - Modern Web Engineering & Intelligent AI Systems',
   description: 'Empowering ambitious businesses with high-performance websites, custom agentic AI workflows, and scalable digital solutions.',
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+    ],
     shortcut: '/favicon.svg',
+    apple: '/apple-icon.png',
   },
   openGraph: {
     title: 'Qod Labs LLP - Modern Web Engineering & Intelligent AI Systems',

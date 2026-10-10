@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Container } from '@/components/layouts/container'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Code2 } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
+import { BrandIcon } from '@/components/brand-icon'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -27,7 +28,7 @@ export function SiteHeader() {
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-teal-500 shadow-sm shadow-blue-500/20 group-hover:scale-105 transition-transform duration-fast">
-              <Code2 className="h-5 w-5 text-white" />
+              <BrandIcon className="h-5 w-5 text-white" />
             </div>
             <div className="flex flex-col">
               <span className="font-display text-xl font-bold tracking-tight">
